@@ -3,7 +3,7 @@
 
 namespace MaxBrokman\SafeQueue;
 
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -16,7 +16,7 @@ use Throwable;
 /*final*/ class Worker extends IlluminateWorker
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $entityManager;
 
@@ -25,13 +25,13 @@ use Throwable;
      *
      * @param QueueManager     $manager
      * @param Dispatcher       $events
-     * @param EntityManager    $entityManager
+     * @param EntityManagerInterface    $entityManager
      * @param ExceptionHandler $exceptions
      */
     public function __construct(
         QueueManager $manager,
         Dispatcher $events,
-        EntityManager $entityManager,
+        EntityManagerInterface $entityManager,
         ExceptionHandler $exceptions
     ) {
         parent::__construct($manager, $events, $exceptions);
